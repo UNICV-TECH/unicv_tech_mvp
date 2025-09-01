@@ -1,0 +1,6 @@
+# Time QA é dono de tudo que vai pra produção
+* @UNICV-TECH/qa-team
+
+# Time Dev é dono do código fonte (pode revisar features entre si)
+src/ @UNICV-TECH/dev-team
+
