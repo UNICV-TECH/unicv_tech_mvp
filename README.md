@@ -8,6 +8,6 @@ Problema Solucionado
 Estudos cansativos e pouco atrativos
 → A gamificação transforma o aprendizado em algo divertido e motivador.
 
-    Falta de acompanhamento do progresso
+→  Falta de acompanhamento do progresso
 
 → O app gera estatísticas de desempenho para que o aluno veja sua evolução.
