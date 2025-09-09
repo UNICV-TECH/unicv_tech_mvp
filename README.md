@@ -1,16 +1,13 @@
-# unicv_tech_mvp
+UNICV-TECH-2025
+Visão Geral do Projeto
+Este projeto tem como objetivo criar um aplicativo gamificado para auxiliar estudantes na preparação para o ENADE (Exame Nacional de Desempenho dos Estudantes).
 
-A new Flutter project.
+O app transforma o estudo em uma experiência dinâmica e divertida, utilizando questões, simulados, desafios, níveis, conquistas e recompensas virtuais.
 
-## Getting Started
+Problema Solucionado
+Estudos cansativos e pouco atrativos
+→ A gamificação transforma o aprendizado em algo divertido e motivador.
 
-This project is a starting point for a Flutter application.
+→ Falta de acompanhamento do progresso
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+→ O app gera estatísticas de desempenho para que o aluno veja sua evolução.
