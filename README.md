@@ -12,3 +12,4 @@ Estudos cansativos e pouco atrativos
 → Falta de acompanhamento do progresso
 
 → O app gera estatísticas de desempenho para que o aluno veja sua evolução.
+teste
