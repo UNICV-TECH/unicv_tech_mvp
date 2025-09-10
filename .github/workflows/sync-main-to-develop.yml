@@ -1,5 +1,8 @@
 name: Sync main to develop
 
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -8,18 +11,22 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout código
+      - name: Checkout do código
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Configurar Git
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/UNICV-TECH/unicv_tech_mvp.git
 
       - name: Sincronizar develop com main
         run: |
           git fetch origin
           git checkout develop
-          git merge origin/main --allow-unrelated-histories
+          git merge origin/main --allow-unrelated-histories --no-edit --strategy-option theirs
           git push origin develop
