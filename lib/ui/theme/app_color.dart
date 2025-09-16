@@ -13,11 +13,13 @@ class AppColors {
   static const Color webNeutral900 = Color(0xFF262626);
 
   //grupo brand no figma
-  static const Color pink = Color(0xFFF52F82);
-  static const Color pinkChart = Color(0xFFFF1980);
+  static const Color green = Color(0xFF3B5C34);
+  static const Color greenChart = Color.fromARGB(70, 59, 92, 52);
+  static const Color orange = Color(0xFFEF992D);
+  static const Color orangeChart = Color(0xFFDC9B3C);
 
   //grupo text no figma
-  static const Color primaryDark = Color(0xFF262525);
+  static const Color primaryDark = Color.fromARGB(255, 0, 0, 0);
   static const Color secondaryDark = Color(0xFF666465);
   static const Color tertiaryDark = Color(0xFFccc1c7);
 
@@ -32,4 +34,6 @@ class AppColors {
   static const Color iconBackgroundRed = Color.fromARGB(20, 213, 44, 52);
   static const Color iconRed = Color.fromARGB(255, 213, 44, 52);
   static const Color shadow = Color(0x1A000000);
+  static const Color inputLogin = Color.fromARGB(20, 59, 92, 52);
+
 }
