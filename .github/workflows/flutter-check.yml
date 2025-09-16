@@ -1,0 +1,32 @@
+name: Flutter Check on Develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  flutter-check:
+    name: Verificar Projeto Flutter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v3
+
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.13.0' 
+
+      - name: Verificar versão do Flutter
+        run: flutter --version
+
+      - name: Instalar dependências
+        run: flutter pub get
+
+      - name: Verificar erros de lint
+        run: flutter analyze
+
+      - name: Rodar testes
+        run: flutter test
