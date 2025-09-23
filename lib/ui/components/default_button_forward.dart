@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widget_previews.dart';
 import 'package:unicv_tech_mvp/ui/theme/app_color.dart';
-
 @Preview(name: 'Botão Próximo')
 Widget avancarButtonPreview() {
   return Center(
@@ -12,7 +11,6 @@ Widget avancarButtonPreview() {
     ),
   );
 }
-
 class DefaultButtonForward extends StatefulWidget {
   final String text;
   final VoidCallback onPressed;
@@ -25,11 +23,9 @@ class DefaultButtonForward extends StatefulWidget {
     this.icon,
     this.fontSize = 14,
   });
-
   @override
   State<DefaultButtonForward> createState() => _DefaultButtonForwardState();
 }
-
 class _DefaultButtonForwardState extends State<DefaultButtonForward> {
   @override
   Widget build(BuildContext context) {
