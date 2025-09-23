@@ -31,7 +31,6 @@ class _DefaultButtonForwardState extends State<DefaultButtonForward> {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: widget.onPressed,
-      style: ButtonStyle(),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

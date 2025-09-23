@@ -31,7 +31,6 @@ class _DefaultButtonBackState extends State<DefaultButtonBack> {
   Widget build(BuildContext context) {
     return TextButton.icon(
       onPressed: widget.onPressed,
-      style: ButtonStyle(),
       icon: Icon(widget.icon, color: AppColors.primaryDark),
       label: Text(
         widget.text,
