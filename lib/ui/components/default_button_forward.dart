@@ -10,7 +10,6 @@ Widget avancarButtonPreview() {
     ),
   );
 }
-
 class Preview {
   const Preview({required String name});
 }
