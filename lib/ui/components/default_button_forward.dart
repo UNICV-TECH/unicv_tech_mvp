@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
 import 'package:unicv_tech_mvp/ui/theme/app_color.dart';
 @Preview(name: 'Botão Próximo')
 Widget avancarButtonPreview() {
@@ -10,6 +9,10 @@ Widget avancarButtonPreview() {
       onPressed: () {},
     ),
   );
+}
+
+class Preview {
+  const Preview({required String name});
 }
 class DefaultButtonForward extends StatefulWidget {
   final String text;
