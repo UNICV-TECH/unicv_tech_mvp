@@ -39,7 +39,7 @@ class _DefaultButtonForwardState extends State<DefaultButtonForward> {
         children: [
           Text(
             widget.text,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
               color: AppColors.primaryDark,
               fontSize: 16,

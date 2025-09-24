@@ -36,7 +36,7 @@ class _DefaultButtonBackState extends State<DefaultButtonBack> {
       icon: Icon(widget.icon, color: AppColors.primaryDark),
       label: Text(
         widget.text,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w600,
           color: AppColors.webNeutral800,
           fontSize: 16,
