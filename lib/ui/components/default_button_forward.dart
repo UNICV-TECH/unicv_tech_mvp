@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unicv_tech_mvp/ui/theme/app_color.dart';
+
 @Preview(name: 'Botão Próximo')
 Widget avancarButtonPreview() {
   return Center(
