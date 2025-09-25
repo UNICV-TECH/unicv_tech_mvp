@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
-
-//Preview
+import 'package:google_fonts/google_fonts.dart';
+import 'package:unicv_tech_mvp/ui/theme/app_color.dart';
 
 // Constante para o tamanho do container de preview
-const Size tamanhoPadraoPreview = Size(300, 250);
+const Size defaultPreviewSize = Size(300, 250);
 
-// Preview do componente com 'Fácil' selecionado por padrão
+// Preview do componente com a primeira opção selecionada
 @Preview(
   name: 'Caixa de Seleção - Padrão',
-  size: tamanhoPadraoPreview,
+  size: defaultPreviewSize,
   brightness: Brightness.light,
 )
-Widget componenteCaixaSelecaoPadraoPreview() {
+Widget selectionBoxDefaultPreview() {
   return Scaffold(
     body: Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ComponenteCaixaSelecao(
-          opcoes: const ['Fácil', 'Médio', 'Difícil'],
-          opcaoInicial: 'Fácil', // Define a primeira opção como selecionada
-          onOpcaoSelecionada: (opcao) {
-            // Ação ao selecionar. No preview, pode-se usar um print.
-            debugPrint("Opção selecionada: $opcao");
+        child: SelectionBox(
+          options: const ['Fácil', 'Médio', 'Difícil'],
+          initialOption: 'Fácil',
+          onOptionSelected: (option) {
+            debugPrint("Selecione a opção: $option");
           },
         ),
       ),
@@ -32,19 +31,19 @@ Widget componenteCaixaSelecaoPadraoPreview() {
 // Preview do componente com outra opção selecionada
 @Preview(
   name: 'Caixa de Seleção - "Quantidade" ',
-  size: tamanhoPadraoPreview,
+  size: defaultPreviewSize,
   brightness: Brightness.light,
 )
-Widget componenteCaixaSelecaoDificilPreview() {
+Widget selectionBoxQuantityPreview() {
   return Scaffold(
     body: Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ComponenteCaixaSelecao(
-          opcoes: const ['5', '10', '15'],
-          opcaoInicial: '15', // Define 'Difícil' como a seleção inicial
-          onOpcaoSelecionada: (opcao) {
-            debugPrint("Opção selecionada: $opcao");
+        child: SelectionBox(
+          options: const ['5', '10', '15', '20'],
+          initialOption: '15',
+          onOptionSelected: (option) {
+            debugPrint("Selecione a opção: $option");
           },
         ),
       ),
@@ -52,22 +51,22 @@ Widget componenteCaixaSelecaoDificilPreview() {
   );
 }
 
-// Preview com textos customizados
+// Preview com opções customizadas
 @Preview(
   name: 'Caixa de Seleção - Opções customizadas',
-  size: tamanhoPadraoPreview,
+  size: defaultPreviewSize,
   brightness: Brightness.light,
 )
-Widget componenteCaixaSelecaoCustomizadaPreview() {
+Widget selectionBoxCustomPreview() {
   return Scaffold(
     body: Center(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ComponenteCaixaSelecao(
-          opcoes: const ['Iniciante', 'Intermediário', 'Avançado'],
-          opcaoInicial: 'Intermediário',
-          onOpcaoSelecionada: (opcao) {
-            debugPrint("Opção selecionada: $opcao");
+        child: SelectionBox(
+          options: const ['Iniciante', 'Intermediário', 'Avançado'],
+          initialOption: 'Intermediário',
+          onOptionSelected: (option) {
+            debugPrint("Selecione a opção: $option");
           },
         ),
       ),
@@ -75,7 +74,7 @@ Widget componenteCaixaSelecaoCustomizadaPreview() {
   );
 }
 
-// Classe de anotação para o preview (exatamente como no seu exemplo)
+// Classe de anotação para o preview
 class Preview {
   final String name;
   final Size? size;
@@ -90,112 +89,95 @@ class Preview {
   });
 }
 
+// Classe principal do componente de seleção
+class SelectionBox extends StatefulWidget {
+  final List<String> options;
+  final ValueChanged<String> onOptionSelected;
+  final String? initialOption;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Enum para definir o tipo de item, embora neste caso seja mais sobre estado (selecionado/não selecionado)
-
-enum OpcaoSelecaoStatus { selecionado, naoSelecionado }
-
-class ComponenteCaixaSelecao extends StatefulWidget {
-  // Lista de textos para cada opção da caixa de seleção.
-  final List<String> opcoes;
-  // Callback que é chamado quando uma nova opção é selecionada. Retorna o texto da opção.
-  final ValueChanged<String> onOpcaoSelecionada;
-  // A opção que deve vir pré-selecionada.
-  final String? opcaoInicial;
-
-  const ComponenteCaixaSelecao({
+  const SelectionBox({
     super.key,
-    required this.opcoes,
-    required this.onOpcaoSelecionada,
-    this.opcaoInicial,
+    required this.options,
+    required this.onOptionSelected,
+    this.initialOption,
   });
 
   @override
-  State<ComponenteCaixaSelecao> createState() => _ComponenteCaixaSelecaoState();
+  State<SelectionBox> createState() => _SelectionBoxState();
 }
 
-class _ComponenteCaixaSelecaoState extends State<ComponenteCaixaSelecao> {
-  // Variável para armazenar a opção atualmente selecionada.
-  String? _opcaoSelecionada;
+// Estado do componente
+class _SelectionBoxState extends State<SelectionBox> {
+  String? _currentlySelectedOption;
 
   @override
   void initState() {
     super.initState();
-    // Define a opção inicial quando o widget é construído.
-    _opcaoSelecionada = widget.opcaoInicial;
+    // Valida se a opção inicial existe na lista antes de setar
+    if (widget.initialOption != null &&
+        widget.options.contains(widget.initialOption)) {
+      _currentlySelectedOption = widget.initialOption;
+    }
   }
 
-  // Função para construir um único item da lista (Fácil, Médio, Difícil).
-  Widget _buildOpcaoItem(String textoOpcao) {
-    final bool estaSelecionado = _opcaoSelecionada == textoOpcao;
+  // Constrói um item da lista de seleção
+  Widget _buildSelectionOptionItem(String optionText) {
+    final bool isSelected = _currentlySelectedOption == optionText;
 
-    // Define a aparência com base no estado de seleção.
-    final Color corIcone = estaSelecionado ? Colors.white : Colors.transparent;
-    final Color corFundoIcone =
-        estaSelecionado ? const Color.fromARGB(255, 83, 177, 117) : Colors.transparent;
-    final Color corBorda =
-        estaSelecionado ? const Color.fromARGB(255, 83, 177, 117) : Colors.grey.shade400;
-    final Color corTexto =
-        estaSelecionado ? const Color.fromARGB(255, 83, 177, 117) : Colors.grey.shade700;
-    final FontWeight pesoFonte =
-        estaSelecionado ? FontWeight.bold : FontWeight.normal;
+    final Color iconColor = isSelected ? AppColors.white : AppColors.transparent;
+    final Color iconBackgroundColor =
+        isSelected ? AppColors.checklistSelected : AppColors.transparent;
+    final Color borderColor =
+        isSelected ? AppColors.checklistSelected : AppColors.checklistUnselectedBorder;
+    final Color textColor =
+        isSelected ? AppColors.checklistSelected : AppColors.checklistUnselectedText;
+    final FontWeight fontWeight =
+        isSelected ? FontWeight.bold : FontWeight.normal;
 
-    return GestureDetector(
-      onTap: () {
-        // Atualiza o estado para refletir a nova seleção.
-        setState(() {
-          _opcaoSelecionada = textoOpcao;
-        });
-        // Notifica o widget pai sobre a mudança.
-        widget.onOpcaoSelecionada(textoOpcao);
-      },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: Row(
-          children: [
-            // Container do ícone (o quadrado de seleção)
-            Container(
-              width: 24.07,
-              height: 24.07,
-              decoration: BoxDecoration(
-                color: corFundoIcone,
-                border: Border.all(color: corBorda, width: 1.5),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Center(
-                child: Icon(
-                  Icons.check_rounded,
-                  color: corIcone,
-                  size: 20.0,
+    return Material(
+      color: AppColors.transparent,
+      child: InkWell(
+        key: ValueKey(optionText),
+        borderRadius: BorderRadius.circular(8.0),
+        onTap: () {
+          setState(() {
+            _currentlySelectedOption = optionText;
+          });
+          widget.onOptionSelected(optionText);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Row(
+            children: [
+              Container(
+                width: 24.07,
+                height: 24.07,
+                decoration: BoxDecoration(
+                  color: iconBackgroundColor,
+                  border: Border.all(color: borderColor, width: 1.5),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Center(
+                  child: Icon(
+                    Icons.check_rounded,
+                    color: iconColor,
+                    size: 20.0,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 12.0), // Espaçamento
-            // Texto da opção
-            Text(
-              textoOpcao,
-              style: TextStyle(
-                fontSize: 16,
-                color: corTexto,
-                fontWeight: pesoFonte,
+              const SizedBox(width: 12.0),
+              Text(
+                optionText,
+                style: GoogleFonts.montserrat(
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    color: textColor,
+                    fontWeight: fontWeight,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -203,13 +185,12 @@ class _ComponenteCaixaSelecaoState extends State<ComponenteCaixaSelecao> {
 
   @override
   Widget build(BuildContext context) {
-    // Usa um Column para listar as opções verticalmente.
     return Column(
-      mainAxisSize: MainAxisSize.min, // Para ocupar apenas o espaço necessário
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.opcoes
-          .map((opcao) => _buildOpcaoItem(opcao))
-          .toList(), // Mapeia a lista de strings para uma lista de widgets
+      children: widget.options
+          .map((option) => _buildSelectionOptionItem(option))
+          .toList(),
     );
   }
 }
