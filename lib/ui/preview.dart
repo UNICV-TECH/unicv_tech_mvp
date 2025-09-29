@@ -52,6 +52,7 @@ Widget componenteBotaoPrimarioIconePreview() {
   brightness: Brightness.light,
 )
 Widget componenteBotaoPrimarioTextoIconePreview() {
+  // ignore: avoid_unnecessary_containers
   return Container(
     child: Center(
       child: Componentebotao(
