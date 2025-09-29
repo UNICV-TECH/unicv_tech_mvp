@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'components/ComponenteBotao.dart';
+import 'components/ComponenteNavbar.dart';
 
 // Constante para tamanho padrão dos previews
 const Size tamanhoPadraoPreview = Size(353, 100);
@@ -113,4 +114,28 @@ class Preview {
     this.textScaleFactor,
     this.brightness,
   });
+}
+
+@Preview(
+  name: 'Navbar',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget customNavBarPreview() {
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: Colors.grey[200],
+      body: Stack(
+        children: const [
+          Center(child: Text('Conteúdo de teste')),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: CustomNavBar(),
+          ),
+        ],
+      ),
+    ),
+  );
 }
