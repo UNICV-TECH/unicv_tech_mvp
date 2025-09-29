@@ -127,8 +127,8 @@ Widget customNavBarPreview() {
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Stack(
-        children: const [
+      body: const Stack(
+        children: [
           Center(child: Text('Conteúdo de teste')),
           Align(
             alignment: Alignment.bottomCenter,
