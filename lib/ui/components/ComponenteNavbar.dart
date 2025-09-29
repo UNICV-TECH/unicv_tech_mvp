@@ -62,6 +62,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.2),
                       spreadRadius: 2,
                       blurRadius: 10,
@@ -200,12 +201,12 @@ class NavBarClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant NavBarClipper old) {
-    return old.selectedIndex != selectedIndex ||
-        old.circleSize != circleSize ||
-        old.itemWidth != itemWidth ||
-        old.curveDepth != curveDepth ||
-        old.shoulder != shoulder;
+  bool shouldReclip(covariant NavBarClipper oldClipper) {
+    return oldClipper.selectedIndex != selectedIndex ||
+        oldClipper.circleSize != circleSize ||
+        oldClipper.itemWidth != itemWidth ||
+        oldClipper.curveDepth != curveDepth ||
+        oldClipper.shoulder != shoulder;
   }
 }
 
@@ -219,8 +220,8 @@ class CustomNavBarTest extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey[200],
-        body: Stack(
-          children: const [
+        body: const Stack(
+          children: [
             Center(child: Text('Conteúdo de teste')),
             Align(
               alignment: Alignment.bottomCenter,
