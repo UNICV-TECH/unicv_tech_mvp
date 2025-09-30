@@ -36,4 +36,12 @@ class AppColors {
   static const Color shadow = Color(0x1A000000);
   static const Color inputLogin = Color.fromARGB(20, 59, 92, 52);
 
+  // checklist colors
+  static const Color checklistSelected = Color(0xFF53B175); // verde seleção
+  static const Color checklistUnselectedBorder = Color(0xFFBDBDBD); // cinza borda
+  static const Color checklistUnselectedText = Color(0xFF616161); // cinza texto
+
+  // Transparent color for UI elements
+  static const Color transparent = Colors.transparent;
+
 }

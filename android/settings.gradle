@@ -17,4 +17,10 @@ pluginManagement {
 
 include ":app"
 
-apply from: "${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+pluginManagement {
+    includeBuild("${settingsDir}/../flutter/packages/flutter_tools/gradle")
+}
+
+plugins {
+    id "dev.flutter.flutter-gradle-plugin"
+}
