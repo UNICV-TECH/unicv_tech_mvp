@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'components/ComponenteBotao.dart';
 import 'components/ComponenteNavbar.dart';
+import 'components/ScoreCard.dart';
 
 // Constante para tamanho padrão dos previews
 const Size tamanhoPadraoPreview = Size(353, 100);
@@ -98,6 +99,110 @@ Widget componenteBotaoDesabilitadoPreview() {
         texto: "Desabilitado",
         onPressed: () {},
         tipo: BotaoTipo.desabilitado,
+      ),
+    ),
+  );
+}
+
+// ==================== SCORE CARD PREVIEWS ====================
+
+// Preview do ScoreCard - Acertos
+@Preview(
+  name: 'ScoreCard - Acertos',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardAcertosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.check_circle,
+        score: 15,
+        iconColor: Colors.green,
+        scoreColor: Colors.green,
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Erros
+@Preview(
+  name: 'ScoreCard - Erros',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardErrosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.cancel,
+        score: 3,
+        iconColor: Colors.red,
+        scoreColor: Colors.red,
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Pontos
+@Preview(
+  name: 'ScoreCard - Pontos',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardPontosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.stars,
+        score: 150,
+        iconColor: Colors.amber,
+        scoreColor: Colors.amber,
+        backgroundColor: Color(0xFFFFF8E1),
+        borderColor: Color(0xFFFFD54F),
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Customizado
+@Preview(
+  name: 'ScoreCard - Customizado',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardCustomizadoPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.emoji_events,
+        score: 42,
+        iconColor: Color(0xFF9C27B0),
+        scoreColor: Color(0xFF7B1FA2),
+        backgroundColor: Color(0xFFF3E5F5),
+        borderColor: Color(0xFFBA68C8),
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Básico
+@Preview(
+  name: 'ScoreCard - Básico',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardBasicoPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.score,
+        score: 25,
       ),
     ),
   );
