@@ -1,4 +1,12 @@
+
+# .github/workflows/flutter-check.yml
+
 name: Flutter Matrix Check on Develop
+name: Flutter Check on Develop
+
+name: Flutter Matrix Check on Develop
+
+
 
 on:
   push:
@@ -7,6 +15,18 @@ on:
 
 jobs:
   flutter-check:
+
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        flutter-version: [3.10.0, 3.13.0]
+    runs-on: ${{ matrix.os }}
+
+    name: Verificar Flutter ${{ matrix.flutter-version }} em ${{ matrix.os }}
+    name: Verificar Projeto Flutter
+    runs-on: ubuntu-latest
+
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
@@ -14,6 +34,8 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     name: Verificar Flutter ${{ matrix.flutter-version }} em ${{ matrix.os }}
+
+
 
     steps:
       - name: Checkout do código
@@ -23,7 +45,11 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ matrix.flutter-version }}
+
+          flutter-version: '3.13.0' 
+
           channel: stable
+
 
       - name: Verificar versão do Flutter
         run: flutter --version
@@ -34,7 +60,17 @@ jobs:
       - name: Verificar erros de lint
         run: flutter analyze
 
+
+
       - name: Rodar testes unitários
+        run: flutter test
+
+      - name: Compilar APK Android (somente em Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: flutter build apk --debug
+      - name: Rodar testes
+      - name: Rodar testes unitários
+
         run: flutter test
 
       - name: Compilar APK Android (somente em Ubuntu)
