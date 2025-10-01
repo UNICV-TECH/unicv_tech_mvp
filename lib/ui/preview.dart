@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'components/ComponenteBotao.dart';
-import 'components/ComponenteNavbar.dart';
-import 'components/exam_history_accordion.dart';
 import 'package:unicv_tech_mvp/services/exam_history_service.dart';
 import 'package:unicv_tech_mvp/services/repositories/mock_exam_history_repository.dart';
+import 'package:unicv_tech_mvp/ui/components/exam_history_accordion.dart';
+import 'components/ComponenteBotao.dart';
+import 'components/ComponenteNavbar.dart';
+import 'components/ScoreCard.dart';
 
 // Constante para tamanho padrão dos previews
 const Size tamanhoPadraoPreview = Size(353, 100);
@@ -106,43 +107,105 @@ Widget componenteBotaoDesabilitadoPreview() {
   );
 }
 
+// ==================== SCORE CARD PREVIEWS ====================
+
+// Preview do ScoreCard - Acertos
 @Preview(
-  name: 'Histórico de Provas',
-  size: Size(360, 560),
+  name: 'ScoreCard - Acertos',
+  size: tamanhoPadraoPreview,
   textScaleFactor: 1.0,
   brightness: Brightness.light,
 )
-Widget examHistoryAccordionPreview() {
-  final service = ExamHistoryService(
-    repository: MockExamHistoryRepository(),
+Widget scoreCardAcertosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.check_circle,
+        score: 15,
+        iconColor: Colors.green,
+        scoreColor: Colors.green,
+      ),
+    ),
   );
+}
 
-  return MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          ExamHistoryAccordion(
-            service: service,
-            iconByKey: const {
-              'psychology': Icons.psychology_alt_outlined,
-              'social_sciences': Icons.groups_2_outlined,
-              'financial': Icons.request_quote_outlined,
-              'administration': Icons.settings_suggest_outlined,
-              'pedagogy': Icons.school_outlined,
-              'design': Icons.design_services_outlined,
-              'law': Icons.balance_outlined,
-            },
-          ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 8),
-              child: CustomNavBar(),
-            ),
-          ),
-        ],
+// Preview do ScoreCard - Erros
+@Preview(
+  name: 'ScoreCard - Erros',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardErrosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.cancel,
+        score: 3,
+        iconColor: Colors.red,
+        scoreColor: Colors.red,
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Pontos
+@Preview(
+  name: 'ScoreCard - Pontos',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardPontosPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.stars,
+        score: 150,
+        iconColor: Colors.amber,
+        scoreColor: Colors.amber,
+        backgroundColor: Color(0xFFFFF8E1),
+        borderColor: Color(0xFFFFD54F),
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Customizado
+@Preview(
+  name: 'ScoreCard - Customizado',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardCustomizadoPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.emoji_events,
+        score: 42,
+        iconColor: Color(0xFF9C27B0),
+        scoreColor: Color(0xFF7B1FA2),
+        backgroundColor: Color(0xFFF3E5F5),
+        borderColor: Color(0xFFBA68C8),
+      ),
+    ),
+  );
+}
+
+// Preview do ScoreCard - Básico
+@Preview(
+  name: 'ScoreCard - Básico',
+  size: tamanhoPadraoPreview,
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget scoreCardBasicoPreview() {
+  return Container(
+    child: Center(
+      child: const ScoreCard(
+        icon: Icons.score,
+        score: 25,
       ),
     ),
   );
@@ -179,6 +242,48 @@ Widget customNavBarPreview() {
           Align(
             alignment: Alignment.bottomCenter,
             child: CustomNavBar(),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+@Preview(
+  name: 'Histórico de Provas',
+  size: Size(360, 560),
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget examHistoryAccordionPreview() {
+  final service = ExamHistoryService(
+    repository: MockExamHistoryRepository(),
+  );
+
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          ExamHistoryAccordion(
+            service: service,
+            iconByKey: const {
+              'psychology': Icons.psychology_alt_outlined,
+              'social_sciences': Icons.groups_2_outlined,
+              'financial': Icons.request_quote_outlined,
+              'administration': Icons.settings_suggest_outlined,
+              'pedagogy': Icons.school_outlined,
+              'design': Icons.design_services_outlined,
+              'law': Icons.balance_outlined,
+            },
+          ),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 8),
+              child: CustomNavBar(),
+            ),
           ),
         ],
       ),
