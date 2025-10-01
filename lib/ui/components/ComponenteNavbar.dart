@@ -86,7 +86,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.20),
+                    color: Colors.black.withValues(alpha: 0.20),
                     blurRadius: 10,
                     spreadRadius: 2,
                     offset: const Offset(0, 5),
