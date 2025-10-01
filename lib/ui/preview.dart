@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:unicv_tech_mvp/services/exam_history_service.dart';
+import 'package:unicv_tech_mvp/services/repositories/mock_exam_history_repository.dart';
+import 'package:unicv_tech_mvp/ui/components/exam_history_accordion.dart';
 import 'components/ComponenteBotao.dart';
 import 'components/ComponenteNavbar.dart';
 import 'components/ScoreCard.dart';
@@ -239,6 +242,48 @@ Widget customNavBarPreview() {
           Align(
             alignment: Alignment.bottomCenter,
             child: CustomNavBar(),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+@Preview(
+  name: 'Histórico de Provas',
+  size: Size(360, 560),
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget examHistoryAccordionPreview() {
+  final service = ExamHistoryService(
+    repository: MockExamHistoryRepository(),
+  );
+
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          ExamHistoryAccordion(
+            service: service,
+            iconByKey: const {
+              'psychology': Icons.psychology_alt_outlined,
+              'social_sciences': Icons.groups_2_outlined,
+              'financial': Icons.request_quote_outlined,
+              'administration': Icons.settings_suggest_outlined,
+              'pedagogy': Icons.school_outlined,
+              'design': Icons.design_services_outlined,
+              'law': Icons.balance_outlined,
+            },
+          ),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 8),
+              child: CustomNavBar(),
+            ),
           ),
         ],
       ),
