@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widget_previews.dart';
 
 class ScoreCard extends StatelessWidget {
   final IconData icon;
@@ -37,9 +36,9 @@ class ScoreCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final double finalIconSize = iconSize ?? 32.0;
     final double clampedIconSize = finalIconSize.clamp(24.0, 40.0);
-    
+
     final double finalFontSize = fontSize ?? (clampedIconSize * 0.8);
-    
+
     return Container(
       width: width,
       height: height ?? 80,
@@ -58,7 +57,8 @@ class ScoreCard extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(12),
           child: Padding(
-            padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: padding ??
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               children: [
                 Icon(
@@ -67,7 +67,6 @@ class ScoreCard extends StatelessWidget {
                   color: iconColor ?? Colors.grey[600],
                 ),
                 const SizedBox(width: 16),
-                
                 Expanded(
                   child: Text(
                     score.toString(),
