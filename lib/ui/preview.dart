@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'components/ComponenteBotao.dart';
 import 'components/ComponenteNavbar.dart';
 import 'components/ScoreCard.dart';
+import 'components/subject_card.dart';
+import 'theme/app_color.dart';
 
 // Constante para tamanho padrão dos previews
 const Size tamanhoPadraoPreview = Size(353, 100);
@@ -203,6 +205,58 @@ Widget scoreCardBasicoPreview() {
       child: const ScoreCard(
         icon: Icons.score,
         score: 25,
+      ),
+    ),
+  );
+}
+
+@Preview(
+  name: 'Subject Card List',
+  size: Size(360, 320),
+  textScaleFactor: 1.0,
+  brightness: Brightness.light,
+)
+Widget subjectCardListPreview() {
+  final List<SubjectCardData> subjects = [
+    SubjectCardData(
+      id: 'psychology',
+      icon: const Icon(Icons.psychology_alt, color: AppColors.green, size: 28),
+      title: 'Psicologia',
+    ),
+    SubjectCardData(
+      id: 'social',
+      icon: const Icon(Icons.groups_3_outlined,
+          color: AppColors.secondaryDark, size: 28),
+      title: 'Ciências Sociais',
+    ),
+    SubjectCardData(
+      id: 'business',
+      icon: const Icon(Icons.settings_suggest_outlined,
+          color: AppColors.secondaryDark, size: 28),
+      title: 'Administração',
+    ),
+    SubjectCardData(
+      id: 'finance',
+      icon: const Icon(Icons.attach_money,
+          color: AppColors.secondaryDark, size: 28),
+      title: 'Gestão Financeira',
+    ),
+    SubjectCardData(
+      id: 'pedagogy',
+      icon: const Icon(Icons.class_outlined,
+          color: AppColors.secondaryDark, size: 28),
+      title: 'Pedagogia',
+    ),
+  ];
+
+  return MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: AppColors.background,
+      body: SubjectCardList(
+        padding: const EdgeInsets.all(24),
+        subjects: subjects,
+        selectedSubjectId: subjects.first.id,
       ),
     ),
   );
