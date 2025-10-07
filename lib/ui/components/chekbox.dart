@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:unicv_tech_mvp/ui/theme/app_color.dart';
 
 // Constante para o tamanho do container de preview
@@ -109,8 +109,6 @@ class SelectionBox extends StatefulWidget {
 // Estado do componente
 class _SelectionBoxState extends State<SelectionBox> {
   String? _currentlySelectedOption;
-  
-  get GoogleFonts => null;
 
   @override
   void initState() {
