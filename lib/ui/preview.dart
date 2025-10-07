@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'components/ComponenteBotao.dart';
-import 'components/ComponenteNavbar.dart';
 import 'components/ScoreCard.dart';
 
 // Constante para tamanho padrão dos previews
@@ -233,12 +232,27 @@ Widget customNavBarPreview() {
     debugShowCheckedModeBanner: false,
     home: Scaffold(
       backgroundColor: Colors.grey[200],
-      body: const Stack(
+      body: Stack(
         children: [
-          Center(child: Text('Conteúdo de teste')),
+          const Center(child: Text('Conteúdo de teste')),
           Align(
             alignment: Alignment.bottomCenter,
-            child: CustomNavBar(),
+            child: BottomNavigationBar(
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.search),
+                  label: 'Buscar',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'Perfil',
+                ),
+              ],
+            ),
           ),
         ],
       ),
