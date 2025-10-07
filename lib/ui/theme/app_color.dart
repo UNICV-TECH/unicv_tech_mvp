@@ -44,4 +44,9 @@ class AppColors {
   // Transparent color for UI elements
   static const Color transparent = Colors.transparent;
 
+  //textfield color
+  static const Color borderColorFocus = Color.fromARGB(255, 33, 150, 243);
+  static const Color borderColorError = Color.fromARGB(255, 244, 67, 54);
+  static const Color estiloLabel = Color.fromARGB(255, 158, 158, 158) 
+
 }
