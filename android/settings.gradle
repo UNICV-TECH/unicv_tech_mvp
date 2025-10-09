@@ -15,12 +15,8 @@ pluginManagement {
     }
 }
 
-include ":app"
-
-pluginManagement {
-    includeBuild("${settingsDir}/../flutter/packages/flutter_tools/gradle")
-}
-
 plugins {
-    id "dev.flutter.flutter-gradle-plugin"
+    id "dev.flutter.flutter-gradle-plugin" apply false
 }
+
+include ":app"
