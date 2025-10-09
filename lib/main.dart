@@ -1,3 +1,4 @@
+// Aplicativo principal do UNICV Tech MVP
 import 'package:flutter/material.dart';
 
 void main() {
